@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -17,11 +18,14 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
+Route::get('/Map', [MapController::class, 'index'])->name('map-index');
+Route::post('/Map-marker-submit', [MapController::class, 'store'])->name('map-marker-submit');
+Route::delete('/Map-marker-delete', [MapController::class, 'destroy'])->name('map-marker-delete');
+Route::patch('/Map-marker-edit', [MapController::class, 'update'])->name('map-marker-edit');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
