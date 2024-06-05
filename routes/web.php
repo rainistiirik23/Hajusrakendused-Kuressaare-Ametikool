@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -17,11 +19,22 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
+Route::get('/Blogs', [BlogController::class, 'render'])->name('blogs');
 Route::middleware('auth')->group(function () {
+    Route::get('/Blogs-Create', [BlogController::class, 'create'])->middleware(['auth'])->name('blog-create');
+    Route::post('/Blog-Submit', [BlogController::class, 'store'])->middleware(['auth'])->name('blog-submit');
+    Route::get('/User-Blogs', [BlogController::class, 'showUsersBlogs'])->middleware(['auth'])->name('users-blogs');
+    Route::delete('/Blog-Delete', [BlogController::class, 'destroy'])->middleware(['auth'])->name('blog-delete');
+    Route::patch('/Blog-update', [BlogController::class, 'update'])->middleware(['auth'])->name('blog-update');
+
+    Route::post('/Blog-Comment-Submit', [CommentController::class, 'store'])->middleware(['auth'])->name('comment-submit');
+    Route::delete('/Blog-Comment-Delete', [CommentController::class, 'destroy'])->middleware(['auth'])->name('blog-comment-delete');
+
+    Route::get('/Blog-Admin-Edit', [BlogController::class, 'showAdminBlogEditView'])->middleware(['auth'])->name('blog-admin-edit-view');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
