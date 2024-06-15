@@ -154,7 +154,8 @@ export default {
                                     sendOrderWithPaymentInfo(
                                         $page.props.orders,
                                         paymentInfoForm
-                                    )
+                                    );
+                                    showCheckoutState.setShowCheckoutStateValue();
                                 "
                             >
                                 <label for="Firstname">Firstname:</label>
