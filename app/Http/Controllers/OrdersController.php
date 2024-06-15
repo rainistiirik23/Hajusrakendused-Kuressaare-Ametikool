@@ -41,8 +41,8 @@ class OrdersController extends Controller
                 'order_id' => $order->id,
             ]);
         }
-
-        return $request->orderItems;
+        $request->session()->flush();
+        return redirect()->back();
     }
     public function orderSession(Request $request)
     {
