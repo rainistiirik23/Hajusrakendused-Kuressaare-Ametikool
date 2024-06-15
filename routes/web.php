@@ -4,6 +4,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
@@ -39,6 +40,8 @@ Route::post('/Products/Order/ChangeUserStock', [OrdersController::class, 'change
 Route::post('/Products/Order/OrderPayment', [OrdersController::class, 'OrderPayment'])->name('order-payment');
 Route::get('/Products/Orders', [OrdersController::class, 'index'])->name('orders-view');
 Route::post('/Product/saveToCart', [CartController::class, 'store'])->name('add-to-cart');
+Route::get('/movies', [MovieController::class, 'index'])->name('movie-view');
+
 Route::middleware('auth')->group(function () {
     Route::get('/Blogs-Create', [BlogController::class, 'create'])->middleware(['auth'])->name('blog-create');
     Route::post('/Blog-Submit', [BlogController::class, 'store'])->middleware(['auth'])->name('blog-submit');
