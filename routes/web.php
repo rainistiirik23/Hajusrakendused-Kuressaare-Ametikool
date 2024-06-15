@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\weatherApiController;
 use Illuminate\Foundation\Application;
@@ -27,6 +30,15 @@ Route::post('/Map-marker-submit', [MapController::class, 'store'])->name('map-ma
 Route::delete('/Map-marker-delete', [MapController::class, 'destroy'])->name('map-marker-delete');
 Route::patch('/Map-marker-edit', [MapController::class, 'update'])->name('map-marker-edit');
 Route::get('/Blogs', [BlogController::class, 'render'])->name('blogs');
+
+Route::get('/Products', [ProductsController::class, 'index'])->name('products-view');
+Route::get('/Products/Product/{product}', [ProductsController::class, 'show'])->name('product-view');
+Route::post('/Products/Ordersession', [OrdersController::class, 'orderSession'])->name('create-order-session');
+Route::post('/Products/Order/RemoveFromCart', [OrdersController::class, 'removeCartItem'])->name('remove-item-from-cart');
+Route::post('/Products/Order/ChangeUserStock', [OrdersController::class, 'changeUserStock'])->name('change-order-user-selected-stock');
+Route::post('/Products/Order/OrderPayment', [OrdersController::class, 'OrderPayment'])->name('order-payment');
+Route::get('/Products/Orders', [OrdersController::class, 'index'])->name('orders-view');
+Route::post('/Product/saveToCart', [CartController::class, 'store'])->name('add-to-cart');
 Route::middleware('auth')->group(function () {
     Route::get('/Blogs-Create', [BlogController::class, 'create'])->middleware(['auth'])->name('blog-create');
     Route::post('/Blog-Submit', [BlogController::class, 'store'])->middleware(['auth'])->name('blog-submit');
