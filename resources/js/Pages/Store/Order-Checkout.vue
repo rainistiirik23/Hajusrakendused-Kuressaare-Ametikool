@@ -16,17 +16,7 @@ const paymentInfoForm = useForm({
     email: null,
     phone: null,
 });
-const totalSumState = reactive({
-    totalSumStateValue: 0,
-    setTotalSumStateValue() {
-        let sum = 0;
-        for (let i = 0; i < props.orders.length; i++) {
-            sum += props.orders[i].price;
-        }
-        this.totalSumStateValue = sum;
-        console.log(this.totalSumStateValue);
-    },
-});
+
 const showCheckoutState = reactive({
     showCheckoutStateValue: false,
     setShowCheckoutStateValue() {
@@ -52,7 +42,6 @@ export default {
             router.post(route("remove-item-from-cart"), { orderItemName });
         },
         sendOrderWithPaymentInfo(orderProp, paymentInfoForm) {
-            console.log(this.orders);
             router.post(route("order-payment"), {
                 orderItems: orderProp,
                 paymentInfo: paymentInfoForm,
@@ -65,7 +54,6 @@ export default {
     <div class="min-h-screen bg-gray-100">
         <StoreHeaderLayout></StoreHeaderLayout>
         <main>
-            {{ console.log($page.props.orders) }}
             <div class="max-h-fit">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white shadow-sm sm:rounded-lg">
@@ -210,13 +198,6 @@ export default {
                                     </button>
                                 </div>
                             </form>
-                            <button
-                                v-on:click="
-                                    totalSumState.setTotalSumStateValue()
-                                "
-                            >
-                                Sum val
-                            </button>
                         </div>
                     </div>
                 </div>
