@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\MovieController;
@@ -39,7 +38,7 @@ Route::post('/Products/Order/RemoveFromCart', [OrdersController::class, 'removeC
 Route::post('/Products/Order/ChangeUserStock', [OrdersController::class, 'changeUserStock'])->name('change-order-user-selected-stock');
 Route::post('/Products/Order/OrderPayment', [OrdersController::class, 'OrderPayment'])->name('order-payment');
 Route::get('/Products/Orders', [OrdersController::class, 'index'])->name('orders-view');
-Route::post('/Product/saveToCart', [CartController::class, 'store'])->name('add-to-cart');
+
 Route::get('/movies', [MovieController::class, 'index'])->name('movie-view');
 
 Route::middleware('auth')->group(function () {
