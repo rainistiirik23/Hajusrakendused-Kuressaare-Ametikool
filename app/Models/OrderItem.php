@@ -11,7 +11,7 @@ class OrderItem extends Model
     use HasFactory;
     const added_at = 'creation_date';
     public $timestamps = false;
-    protected $fillable = ["name", "price", "image", "amount", 'order_id'];
+    protected $fillable = ["name", "price", "image", "amount", 'order_id', 'added_at'];
     /**
      * Get the order that owns the OrderItem
      *

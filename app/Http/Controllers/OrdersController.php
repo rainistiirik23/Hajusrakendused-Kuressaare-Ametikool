@@ -40,6 +40,7 @@ class OrdersController extends Controller
                 'price' => $orderItems[$i]['price'],
                 'amount' => $orderItems[$i]['userSelectedStock'],
                 'order_id' => $order->id,
+                'added_at' => now(),
             ]);
         }
         $request->session()->flush();
