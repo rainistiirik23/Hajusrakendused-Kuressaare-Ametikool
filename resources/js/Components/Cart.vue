@@ -42,7 +42,7 @@ export default {
             Cart
         </button>
         <div
-            class="top-12 right-2 absolute w-60 flex flex-col bg-white border px-2 py-4"
+            class="top-12 absolute w-60 flex flex-col bg-white border px-2 py-4"
             v-if="showDropDownState.showdropDownStateValue"
         >
             <div v-if="$page.props.orders?.length > 0">

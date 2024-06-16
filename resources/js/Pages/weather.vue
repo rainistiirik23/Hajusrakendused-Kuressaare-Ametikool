@@ -34,4 +34,5 @@ defineProps({
             <li>Wind degrees {{ weatherData.wind.deg }}</li>
         </ul>
     </div>
+    <div><a class="bg-slate-400" href="/">Return home</a></div>
 </template>

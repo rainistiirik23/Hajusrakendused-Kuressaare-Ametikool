@@ -15,17 +15,19 @@ const showingNavigationDropdown = ref(false);
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
-                            <div class="shrink-0 flex items-center">
+                            <div class="shrink-0 flex items-center gap-4">
                                 <a :href="route('dashboard')">
                                     <ApplicationLogo
                                         class="block h-9 w-auto fill-current text-gray-800"
                                     />
                                 </a>
+                                <a href="/">Home</a>
                             </div>
                         </div>
 
-                        <div class="sm:flex sm:items-center sm:ms-6">
+                        <div class="sm:flex sm:items-center sm:ms-6 gap-4">
                             <Link :href="route('login')">Log in</Link>
+                            <Link :href="route('register')">Register</Link>
                         </div>
                     </div>
                 </div>

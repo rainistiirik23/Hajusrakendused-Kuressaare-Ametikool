@@ -13,6 +13,7 @@ import Cart from "@/Components/Cart.vue";
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="shrink-0 flex items-center gap-3">
+                            <Link href="/">Home</Link>
                             <Link :href="route('products-view')">Products</Link>
                         </div>
                         <Cart></Cart>
