@@ -16,6 +16,7 @@ class MapMarker extends Model
         'description',
         'latitude',
         'longitude',
+        'added_at',
     ];
 
 }

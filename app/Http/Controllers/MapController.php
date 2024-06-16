@@ -20,6 +20,7 @@ class MapController extends Controller
             'description' => ['required'],
             'latitude' => ['required'],
             'longitude' => ['required'],
+            'added_at' => now(),
         ]
         ));
         return redirect()->back();
