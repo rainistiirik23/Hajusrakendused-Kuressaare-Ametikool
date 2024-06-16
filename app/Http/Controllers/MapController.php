@@ -15,14 +15,15 @@ class MapController extends Controller
     }
     public function store(Request $request)
     {
-        MapMarker::create($request->validate([
-            'name' => ['required'],
-            'description' => ['required'],
-            'latitude' => ['required'],
-            'longitude' => ['required'],
+
+        MapMarker::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
             'added_at' => now(),
         ]
-        ));
+        );
         return redirect()->back();
     }
     public function destroy(Request $request)
