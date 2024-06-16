@@ -59,78 +59,80 @@ export default {
                     <div class="bg-white shadow-sm sm:rounded-lg">
                         <h1 class="mb-20 text-4xl">Your items</h1>
                         <ul class="flex flex-col gap-y-3">
-                            <li
-                                v-if="orders?.length != 0"
-                                v-for="(order, index) in orders"
-                                :key="index"
-                                class="mb-20"
-                            >
-                                <div class="flex gap-x-6 mb-6">
-                                    <div>
-                                        <a
-                                            :href="`/Products/Product/${order.name}`"
-                                            class="border-none"
-                                        >
-                                            <img
-                                                class="w-36"
-                                                :src="`http://127.0.0.1:8000/storage/${order.image}`"
-                                                alt="order image"
-                                            />
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <h2 class="text-2xl">
-                                            {{ order.name }}
-                                        </h2>
-                                        <span
-                                            ><b class="text-2xl"
-                                                >{{ order.price }}$</b
-                                            ></span
-                                        >
-                                        <div class="mb-16">
-                                            <select
-                                                v-on:change="
-                                                    (event) => {
-                                                        changeOrderItemUserSelectedStock(
-                                                            event.currentTarget
-                                                                .value,
-                                                            index
-                                                        );
-                                                    }
-                                                "
+                            <div v-if="orders?.length != 0">
+                                <li
+                                    v-for="(order, index) in orders"
+                                    :key="index"
+                                    class="mb-20"
+                                >
+                                    <div class="flex gap-x-6 mb-6">
+                                        <div>
+                                            <a
+                                                :href="`/Products/Product/${order.name}`"
+                                                class="border-none"
                                             >
-                                                <option
-                                                    hidden
-                                                    selected="selected"
+                                                <img
+                                                    class="w-36"
+                                                    :src="`http://127.0.0.1:8000/storage/${order.image}`"
+                                                    alt="order image"
+                                                />
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <h2 class="text-2xl">
+                                                {{ order.name }}
+                                            </h2>
+                                            <span
+                                                ><b class="text-2xl"
+                                                    >{{ order.price }}$</b
+                                                ></span
+                                            >
+                                            <div class="mb-16">
+                                                <select
+                                                    v-on:change="
+                                                        (event) => {
+                                                            changeOrderItemUserSelectedStock(
+                                                                event
+                                                                    .currentTarget
+                                                                    .value,
+                                                                index
+                                                            );
+                                                        }
+                                                    "
                                                 >
-                                                    {{
-                                                        order.userSelectedStock
-                                                    }}
-                                                </option>
-                                                <option
-                                                    v-for="orderStockValue in order.stock"
-                                                    :key="orderStockValue"
-                                                    :value="orderStockValue"
-                                                >
-                                                    {{ orderStockValue }}
-                                                </option>
-                                            </select>
+                                                    <option
+                                                        hidden
+                                                        selected="selected"
+                                                    >
+                                                        {{
+                                                            order.userSelectedStock
+                                                        }}
+                                                    </option>
+                                                    <option
+                                                        v-for="orderStockValue in order.stock"
+                                                        :key="orderStockValue"
+                                                        :value="orderStockValue"
+                                                    >
+                                                        {{ orderStockValue }}
+                                                    </option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <button
-                                    class="bg-slate-400"
-                                    v-on:click="deleteOrderItem(order.name)"
-                                >
-                                    Delete
-                                </button>
+                                    <button
+                                        class="bg-slate-400"
+                                        v-on:click="deleteOrderItem(order.name)"
+                                    >
+                                        Delete
+                                    </button>
 
-                                <div class="flex gap-x-3"></div>
-                            </li>
+                                    <div class="flex gap-x-3"></div>
+                                </li>
+                            </div>
                         </ul>
                         <div>
                             <button
-                                v-if="$page.props?.orders.length != 0"
+                                v-if="$page.props.orders?.length != 0"
                                 class="bg-slate-400"
                                 v-on:click="
                                     () => {
