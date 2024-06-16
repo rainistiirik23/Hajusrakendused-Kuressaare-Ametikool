@@ -30,6 +30,7 @@ class OrdersController extends Controller
             'email' => $request['paymentInfo']['email'],
             'phone' => $request['paymentInfo']['phone'],
             'order_sum' => $orderSum,
+            'added_at' => now(),
         ]);
 
         for ($i = 0; $i < count($orderItems); $i++) {

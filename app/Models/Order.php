@@ -12,7 +12,7 @@ class Order extends Model
     use HasFactory;
     const added_at = 'creation_date';
     public $timestamps = false;
-    protected $fillable = ['first_name', 'last_name', 'email', 'phone', 'order_sum'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'phone', 'order_sum', 'added_at'];
     /**
      * Get all of the OrderItems for the Order
      *
