@@ -52,9 +52,12 @@ class MovieController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Int $int)
+    public function show(Request $request)
     {
-        return response()->json(Movie::get()->take($int), 200);
+
+        $limit = $request->query('limit');
+        $foreignApiData = json_decode(file_get_contents($request->query('foreignApiUrl')));
+        return response()->json(['data' => Movie::get()->take($limit), 'foreignApiData' => $foreignApiData], 200);
     }
 
     /**
