@@ -25,6 +25,7 @@ class ProductFactory extends Factory
             'price' => fake()->randomFloat(2, 1, 5000),
             'stock' => fake()->numberBetween(1, 20),
             'image' => fake()->image(storage_path('app/public'), 640, 480, null, null),
+            'added_at' => now(),
         ];
     }
 }
