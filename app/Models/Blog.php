@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Blog extends Model
 {
     use HasFactory;
-    protected $fillable = ['userId', 'title', 'description'];
+    protected $fillable = ['userId', 'title', 'description', 'added_at'];
     const added_at = 'creation_date';
     const edited_at = 'updated_date';
     public $timestamps = false;
