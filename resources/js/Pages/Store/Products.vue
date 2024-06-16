@@ -71,6 +71,7 @@ export default {
 
                                 <div class="flex gap-x-3">
                                     <a
+                                        v-on:click="createOrderSession(product)"
                                         :href="route('orders-view')"
                                         class="bg-gray-400"
                                     >
