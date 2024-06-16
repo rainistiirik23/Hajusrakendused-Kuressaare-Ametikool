@@ -6,7 +6,7 @@ import { ref, reactive } from "vue";
 
 const route = inject("route");
 let map = ref(null);
-defineProps({
+const props = defineProps({
     markers: {
         type: Array,
         default: null,
@@ -38,6 +38,13 @@ loader.load().then(async () => {
     let marker = new AdvancedMarkerElement({
         map,
         position: null,
+    });
+
+    props?.markers.forEach((marker) => {
+        marker = new AdvancedMarkerElement({
+            map,
+            position: { lat: marker.latitude, lng: marker.longitude },
+        });
     });
 
     map.addListener("click", (mapsClickEvent) => {
@@ -72,6 +79,7 @@ export default {
 </script>
 
 <template>
+    {{ console.log($page.props.markers) }}
     <div class="flex lg:w-7/12 w-full h-96">
         <div class="h-full w-full" id="map" ref="map"></div>
 
