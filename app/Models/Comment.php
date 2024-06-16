@@ -12,7 +12,7 @@ class Comment extends Model
     const added_at = 'creation_date';
     const edited_at = 'updated_date';
     public $timestamps = false;
-    protected $fillable = ['userId', 'blogId', 'comment'];
+    protected $fillable = ['userId', 'blogId', 'comment', 'added_at'];
     /**
      * Get the user that owns the Comment
      *

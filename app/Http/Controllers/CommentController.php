@@ -35,6 +35,7 @@ class CommentController extends Controller
             'userId' => Auth::id(),
             'blogId' => $validatedRequestData->blogId,
             'comment' => $validatedRequestData->comment,
+            'added_at' => now(),
         ]);
         return redirect()->back();
     }
