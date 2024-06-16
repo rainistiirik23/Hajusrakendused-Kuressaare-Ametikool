@@ -129,7 +129,7 @@ export default {
                         </ul>
                         <div>
                             <button
-                                v-if="$page.props.orders.length != 0"
+                                v-if="$page.props?.orders.length != 0"
                                 class="bg-slate-400"
                                 v-on:click="
                                     () => {
@@ -152,7 +152,7 @@ export default {
                         <div
                             v-if="
                                 showCheckoutState.showCheckoutStateValue &&
-                                $page.props.orders.length != 0
+                                $page.props?.orders.length != 0
                             "
                             class="flex lg:w-7/12 w-full h-fit mb-5"
                         >
