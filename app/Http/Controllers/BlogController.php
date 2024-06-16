@@ -42,6 +42,7 @@ class BlogController extends Controller
             'userId' => Auth::id(),
             'title' => $validatedRequestData->title,
             'description' => $validatedRequestData->description,
+            'added_at' => now(),
 
         ]);
         return redirect('/Blogs');
