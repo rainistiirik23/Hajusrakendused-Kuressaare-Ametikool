@@ -8,10 +8,13 @@ const props = defineProps({
     movies: {
         type: Array,
     },
+    foreignMovies: {
+        Object: Array,
+    },
 });
 </script>
 <template>
-    {{ console.log($page.props) }}
+    {{ console.log($page.props.foreignMovies) }}
     <div class="min-h-screen bg-gray-100">
         <MovieHeaderLayout></MovieHeaderLayout>
         <main>
@@ -59,6 +62,46 @@ const props = defineProps({
                                             <p class="text-balance w-1/2">
                                                 {{ movie.description }}
                                             </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div v-if="$page.props?.foreignMovies">
+                            <h1 class="mb-10">More movies</h1>
+                            <ul class="flex flex-wrap gap-y-12">
+                                <li
+                                    class="w-1/2"
+                                    v-for="(movie, index) in ($page,
+                                    props?.foreignMovies?.data)"
+                                    :key="index"
+                                >
+                                    <div class="flex gap-12">
+                                        <div class="w-1/2">
+                                            <img
+                                                :src="movie.image"
+                                                alt="Movie image"
+                                                srcset=""
+                                            />
+                                        </div>
+                                        <div
+                                            class="flex flex-col gap-3 max-w-fit"
+                                        >
+                                            <span>Title:{{ movie.title }}</span>
+                                            <p class="text-balance w-1/2">
+                                                description:{{
+                                                    movie.description
+                                                }}
+                                            </p>
+                                            <span
+                                                ><b>Rank:</b
+                                                >{{ movie.rank }}</span
+                                            >
+                                            <span
+                                                >Rating:{{
+                                                    movie.movie_rating
+                                                }}</span
+                                            >
                                         </div>
                                     </div>
                                 </li>

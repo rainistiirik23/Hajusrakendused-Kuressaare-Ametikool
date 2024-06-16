@@ -12,17 +12,23 @@ class MovieController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $moviesCache = Cache::get('movies');
-
+        $foreignMovieCache = Cache::get('foreignMovies');
+        $foreignApiUrl = $request->query('foreignApiUrl');
+        if ($foreignApiUrl) {
+            if (!$foreignMovieCache) {
+                $foreignMovieCache = Cache::put('foreignMovies', json_decode(file_get_contents($foreignApiUrl)), now()->addMinutes(30));
+            }
+        }
         if (!$moviesCache) {
             $movies = Movie::get();
             Cache::put('movies', $movies, now()->addMinutes(5));
             return Inertia::render('Movie/Movies', ['movies' => Cache::get('movies')]);
         }
 
-        return Inertia::render('Movie/Movies', ['movies' => $moviesCache]);
+        return Inertia::render('Movie/Movies', ['movies' => $moviesCache, 'foreignMovies' => $foreignMovieCache]);
     }
 
     /**
