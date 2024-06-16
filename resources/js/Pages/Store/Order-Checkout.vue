@@ -60,6 +60,7 @@ export default {
                         <h1 class="mb-20 text-4xl">Your items</h1>
                         <ul class="flex flex-col gap-y-3">
                             <li
+                                v-if="orders?.length != 0"
                                 v-for="(order, index) in orders"
                                 :key="index"
                                 class="mb-20"
